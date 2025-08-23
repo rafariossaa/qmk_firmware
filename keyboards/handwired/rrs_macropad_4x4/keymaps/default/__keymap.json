@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "notes": "",
+  "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
+  "keyboard": "rrs_macropad_4x4",
+  "keymap": "default",
+  "layout": "LAYOUT_ortho_4x4",
+  "macros": [
+    [
+      "Hello world!"
+    ]
+  ],
+  "layers": [
+    [
+      "LCTL(KC_F1)",        "LCTL(KC_F2)",        "LCTL(KC_F3)",   "LCTL(KC_F4)",
+      "LGUI(RCTL(KC_F1))",  "LGUI(RCTL(KC_F2))",  "KC_NO",         "KC_NO",
+      "RGB_TOG",            "RGB_HUI",            "RGB_VAI",       "RGB_M_B",
+      "LCTL(KC_F9)",        "LCTL(KC_F10)",       "TO(1)",         "QK_BOOT"
+    ],
+    [
+      "KC_VOLD",            "KC_VOLU",            "KC_MUTE",       "KC_NO",
+      "KC_MSTP",            "KC_MPRV",            "KC_MNXT",       "KC_MPLY",
+      "QK_MACRO_0",         "RGB_TOG",            "RGB_HUI",       "RGB_VAI",
+      "KC_COPY",            "KC_PSTE",            "TO(0)",         "RGB_VAD"
+    ]
+  ],
+  "author": ""
+}
+
