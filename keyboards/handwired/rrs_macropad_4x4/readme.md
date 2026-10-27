@@ -41,6 +41,40 @@ Flashing example for this keyboard:
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
+## OLED display
+
+The macropad supports a 1.3" 128x64 I2C OLED display with an SH1106 controller, using the [QMK OLED driver](https://docs.qmk.fm/features/oled_driver).
+
+### Wiring
+
+| Display | RP2040 |
+|---------|--------|
+| SDA     | GP10   |
+| SCL     | GP11   |
+| VCC     | 5V (VBUS) |
+| GND     | GND    |
+
+GP10/GP11 are the I2C1 peripheral of the RP2040. This display module has an on-board voltage regulator, so it is powered from 5V.
+
+### Configuration
+
+* `rules.mk`: `OLED_ENABLE = yes` and `OLED_DRIVER = ssd1306` (this driver also covers SH1106).
+* `config.h`:
+  * `I2C_DRIVER I2CD1`, `I2C1_SDA_PIN GP10` and `I2C1_SCL_PIN GP11` select the I2C peripheral and pins.
+  * `OLED_IC OLED_IC_SH1106` selects the controller. Most 1.3" modules use the SH1106 even if they are sold as SSD1306.
+  * `OLED_COLUMN_OFFSET 2` compensates for the SH1106 having 132 columns of memory while the panel shows 128.
+  * `OLED_BRIGHTNESS 128` sets the brightness.
+* `halconf.h` and `mcuconf.h` enable the ChibiOS I2C driver (`HAL_USE_I2C`) and the RP2040 I2C1 peripheral (`RP_I2C_USE_I2C1`).
+
+The default keymap draws the QMK logo in `oled_task_user()` in `keymaps/default/keymap.c`.
+
+### Troubleshooting
+
+* **Random dots or garbage on the screen**: the controller type is probably wrong. Try `OLED_IC_SSD1306` (for SSD1306 modules) or `OLED_IC_SH1106`.
+* **A few columns of noise at one edge**: adjust `OLED_COLUMN_OFFSET` (try 0, 1, 2 or 3).
+* **Blank screen**: check the wiring and the I2C address (default `0x3C`, set `OLED_DISPLAY_ADDRESS 0x3D` if needed).
+
+
 ## Bootloader
 
 Enter the bootloader in 3 ways:

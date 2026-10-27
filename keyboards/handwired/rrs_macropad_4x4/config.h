@@ -27,6 +27,13 @@
 #undef RGBLIGHT_EFFECT_ALTERNATING
 #undef RGBLIGHT_EFFECT_TWINKLE
 
+#define I2C_DRIVER I2CD1
+#define I2C1_SDA_PIN GP10
+#define I2C1_SCL_PIN GP11
+
+#define OLED_BRIGHTNESS 128
+#define OLED_IC OLED_IC_SH1106
+#define OLED_COLUMN_OFFSET 2
 
 /* disable debug print */
 //#define NO_DEBUG
