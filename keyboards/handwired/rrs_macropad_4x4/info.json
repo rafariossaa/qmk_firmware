@@ -24,7 +24,7 @@
         "vid": "0xFEED"
     },
     "ws2812": {
-        "pin": "GP16",
+        "pin": "GP29",
         "driver": "vendor"
     },
     "layouts": {

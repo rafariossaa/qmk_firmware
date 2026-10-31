@@ -53,6 +53,11 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
+
+    // Ignore the RGB state saved in EEPROM and always start with the rainbow swirl
+    rgblight_enable_noeeprom();
+    rgblight_sethsv_noeeprom(0, 255, RGBLIGHT_LIMIT_VAL);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL);
 }
 
 #ifdef OLED_ENABLE
